@@ -1,0 +1,27 @@
+
+{% block content %}
+<style>
+.loginform{
+    text-align: center;
+    margin: auto; 
+}
+.input{
+	margin: 10px; 
+}
+
+input{
+	width: 200px;
+    height: 30px;
+    padding: 10px;
+}
+
+</style>
+<form class="loginform" method="post" action="/login/" >
+<h2>Login</h2> 
+{% csrf_token %}
+	<div class="input"><input type="text" name="username" placeholder="username" required="required"/></div>
+	<div class="input"><input type="password" name="password" placeholder="Password" required="required"/></div>
+	<div class="input"><button type="submit">Login</button></div>
+	<div class="input"><a href="/signup/">Sign up</a> | <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a></div>
+</form>
+{% endblock %} 

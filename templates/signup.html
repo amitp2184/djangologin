@@ -1,0 +1,45 @@
+
+{% block content %}
+<style>
+.loginform{
+    text-align: center;
+    margin: auto; 
+}
+.input{
+	margin: 20px; 
+}
+input{
+	width: 200px;
+    height: 30px;
+    padding: 10px;
+
+}
+
+</style>
+<script>
+function validate(){
+	var pass = document.getElementById("pass").value;
+	var cpass = document.getElementById("cpass").value;
+	console.log(pass+" -----"+cpass)
+	if(pass == cpass){
+		return true;
+	}
+	else{
+		alert("Passwords did not match!");
+		return false;
+	}
+}
+</script>
+<form class="loginform" method="post" action="/signup/" onsubmit="return validate()">
+<h2>Sign up</h2> 
+{% csrf_token %}
+	<div class="input"><input type="text" name="name" placeholder="Name" required="required"/></div>
+	<div class="input"><input type="text" name="username" placeholder="username" required="required"/></div>
+	<div class="input"><input type="email" name="email" placeholder="Email" required="required"/></div>
+	<div class="input"><input id="pass" type="password" name="password" placeholder="Password" required="required"/></div>
+	<div class="input"><input id="cpass" type="password" name="cpassword" placeholder="Confirm Password" required="required"/></div>
+	<div class="input"><input type="date" name="dob" placeholder="DOB" required="required"/></div>
+	<div class="input"><button type="submit">Sign up</button></div>
+	<div class="input"><a href="/login/">Login</a> | <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a></div>
+</form>
+{% endblock %} 

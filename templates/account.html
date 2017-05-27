@@ -1,0 +1,30 @@
+
+{% block content %}
+<style>
+.loginform{
+    text-align: center;
+    margin: auto; 
+}
+.input{
+	margin: 20px; 
+}
+input{
+	width: 200px;
+    height: 30px;
+    padding: 10px;
+
+}
+</style>
+<form class="loginform" method="post" action="/account/">
+<h2>Account</h2> 
+{% csrf_token %}
+	<div class="input"><input type="text" name="name" placeholder="Name" required="required" value="{{ request.user.first_name }}" /></div>
+	<div class="input"><input type="text" name="username" placeholder="Username" required="required" value="{{ request.user.username }}" disabled="disabled"/></div>
+	<div class="input"><input type="text" name="email" placeholder="Email" required="required" value="{{ request.user.email }}" /></div>
+	<div class="input"><input type="text" name="city" placeholder="City" value="{{ Profile.city }}"/></div>
+	<div class="input"><input type="text" name="country" placeholder="Country" value="{{ Profile.country }}"/></div>
+	<div class="input"><input type="text" name="dob" placeholder="DOB(DD/MM/YYYY)" value='{{ Profile.birth_date|date:"d/m/Y"  }}'/></div>
+	<div class="input"><button type="submit">Save</button></div>
+	<div class="input"><a href="/logout/">Logout</a></div>
+</form>
+{% endblock %} 
